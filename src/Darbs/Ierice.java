@@ -1,8 +1,12 @@
 package Darbs;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -21,20 +25,23 @@ import javax.swing.ScrollPaneConstants;
  *8. Izstrāde pabeigta noteiktajā termiņā, programma ir funkcionāli pilnīga (2p)
  */
 public class Ierice {
-   public static void main(String[] args){
+   public static void main(String[] args) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
        String izvele;
        int izvelesID;
        String [] darbibas = {"Izveidot telefonu",
-       "Apskatīt telefonus","Dzēst telefonu","Izsaukt metodes"};
+       "Apskatīt telefonus","Dzēst telefonu","Izsaukt metodes", "Apturēt"};
         String[] veidi = {"Android", "Iphone"};
 		String[] atbilde = {"Jā", "Nē"};
-        ArrayList<Object> telefoni = new ArrayList<>();
 
+        String[] metodes = {"Zvanit", "x"};
+        ArrayList<Object> telefoni = new ArrayList<>();
+        do{
         izvele = (String)JOptionPane.showInputDialog(null, 
                             "Darbību Izvēle", "Izvēle", JOptionPane.QUESTION_MESSAGE,
                             null, darbibas, darbibas[0]);
+        if(izvele == null) break;
         izvelesID = Arrays.asList(darbibas).indexOf(izvele);
-
+        System.out.println(telefoni.size());
         switch(izvelesID){
             case 0: 
                 String modelis = (String) JOptionPane.showInputDialog(null, "Izvēlies modeli",
@@ -42,23 +49,27 @@ public class Ierice {
 						,veidi, veidi[0]);
 
                 if (modelis == null)break;
-                izvelesID = Arrays.asList(veidi).indexOf(izvele);
 				
 	            double ekranaIzmers = Metodes.skaitlaParbaude("Kāds būs ekrāna izmērs?", 4.3, 10.2, "6.9");
+                if(ekranaIzmers == -1) break;
                 double atmina = Metodes.skaitlaParbaude("Cik liela būs telefonam atmiņa?", 32, 1024, "128");
+                if(atmina == -1) atmina = 128;
 	            double cena = Metodes.skaitlaParbaude("Cik maksās", 10, 10000, "630");
+                if(cena == -1) break;
                 String krasa = Metodes.virknesParbaude("Kādā krāsā", "balts");
-                izvele = (String)JOptionPane.showInputDialog(null, "Vai būs google konts", "Izveide",
+
+                izvele = (String)JOptionPane.showInputDialog(null, "Vai būs ringtone", "Izveide",
                         JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
                 boolean ring;
                 if(izvele == "Jā")
                     ring = true;
                 else 
                     ring = false;
-                switch(izvelesID){
-                    case 0:
+                
+                switch(modelis){
+                    case "Android":
                         izvele = (String)JOptionPane.showInputDialog(null, "Vai būs google konts", "Izveide",
-                        JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                            JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
                         boolean googleK;
                         if(izvele == "Jā")
                             googleK = true;
@@ -66,7 +77,7 @@ public class Ierice {
                             googleK = false;
 
                         izvele = (String)JOptionPane.showInputDialog(null, "Vai būs NFC", "Izveide",
-                        JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                            JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
                         boolean NFC;
                         if(izvele == "Jā")
                             NFC = true;
@@ -85,7 +96,7 @@ public class Ierice {
 					    JOptionPane.showMessageDialog(null, "Veiksmīgi izveidots telefons",
 							"Paziņojums", JOptionPane.INFORMATION_MESSAGE);
                         break;
-                    case 1:
+                    case "Iphone":
                         izvele = (String)JOptionPane.showInputDialog(null, "Vai būs faceID?", "Izveide",
                             JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
                         boolean faceID ;
@@ -145,17 +156,30 @@ public class Ierice {
             case 3:
             	if(telefoni.size() > 0) { 
 					int telID = Metodes.telefonaIzvele(telefoni);
-					
-					JOptionPane.showMessageDialog(null, 
-							((Telefons)telefoni.get(telID)).izvadit(),
-							"Telefona informācija", JOptionPane.INFORMATION_MESSAGE);
+                    
+					do{
+                        izvele = (String)JOptionPane.showInputDialog(null, 
+                            "Darbību Izvēle", "Izvēle", JOptionPane.QUESTION_MESSAGE,
+                            null, metodes, metodes[0]);
+                        if(izvele == null) break;
+                        switch(izvele){
+                            case "Zvanit":
+                                ((Telefons)telefoni.get(telID)).ring();
+                                break;
+
+                        }
+                    }while(izvele != "x");
 				}else {
 					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens telefons",
 							"Kļūda", JOptionPane.ERROR_MESSAGE);
 					break;
 				}
 				break;
+            case 4:
+                JOptionPane.showMessageDialog(null,
+                    "Programma apturēta", "STOP",JOptionPane.WARNING_MESSAGE);
+                break;
         }
-
+        }while(izvelesID != 4);
    }
 }
