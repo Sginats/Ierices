@@ -12,6 +12,19 @@ package Darbs;
  *7. Veikta izstrādātā projekta demonstrēšana, orientējas projektā un spēj atbildēt uz uzdotajiem jautājumiem (4p)
  *8. Izstrāde pabeigta noteiktajā termiņā, programma ir funkcionāli pilnīga (2p)
  */
-public class Iphone {
+public class Iphone extends Telefons {
 
+	//Konstruktors
+	private boolean faceID, ringtons, bezvaduLade;
+	
+	public Iphone(boolean faceID, boolean ringtons, boolean bezvaduLade,
+			String modelis, String krasa, double ekranaIzmers, int atmina, double cena) {
+		super(modelis, krasa, ekranaIzmers, atmina, cena);
+		this.faceID = faceID;
+		this.ringtons = ringtons;
+		this.bezvaduLade = bezvaduLade;
+	}
+	static String OS = "iOS";
+	static String izvele;
+	
 }

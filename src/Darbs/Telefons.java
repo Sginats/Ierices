@@ -16,15 +16,18 @@ package Darbs;
 public class Telefons {
 	//Atribūti
 	private String modelis;
+	
+	private String krasa;
 	private double ekranaIzmers;
 	private int atmina;
-	private double cena;
+	private double cString, cena;
 	//Konstruktors
-	public Telefons(String marka, String modelis, double ekranaIzmers, int atmina, double cena) {
+	public Telefons(String modelis, double ekranaIzmers, int atmina, double cena, String krasa) {
 		this.modelis = modelis;
 		this.ekranaIzmers = ekranaIzmers;
 		this.atmina = atmina;
 		this.cena = cena;
+		this.krasa = krasa;
 	}
 	//Metodes
 	public String getModelis() {
@@ -57,11 +60,18 @@ public class Telefons {
 
 	public void setCena(double cena) {
 		this.cena = cena;
-}
-	public String izvaditInfo() {
-		return "Modelis: " + modelis + 
-			   "\nEkrāna izmērs: " + ekranaIzmers + " collas" +
-			   "\nAtmiņa: " + atmina + " GB" +
-			   "\nCena: " + cena + " EUR";
+	}
+	public String getKrasa() {
+		return krasa;
+	}
+	public String setKrasa() {
+		return krasa;
+	}
+	public String izvadit() {
+		return "Telefona modelis: "+modelis+
+				"\nEkrāna izmērs: "+ekranaIzmers+" collas"+
+				"\nAtmiņa: "+atmina+" GB"+
+				"\nCena: "+cena+" EUR"+
+				"\nKrāsa: "+krasa;
 	}
 }

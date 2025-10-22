@@ -1,5 +1,7 @@
 package Darbs;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
@@ -38,5 +40,19 @@ public class Metodes {
 						JOptionPane.WARNING_MESSAGE);
 				}
 			}
+	}
+    static int telefonaIzvele(ArrayList <Object> telefoni) {
+		String[] tSaraksts = new String[telefoni.size()] ;
+		for(int i=0; i<tSaraksts.length; i++) {
+			tSaraksts[i] = 
+				(((Telefons)telefoni.get(i)).getModelis())+" "+
+				(((Telefons)telefoni.get(i)).getCena())+"EUR";
+		}
+		
+		String izveletais = (String)JOptionPane.showInputDialog(null,
+				"Izvēlies telefonu: ", "Izvēle", JOptionPane.QUESTION_MESSAGE, null,
+				tSaraksts,tSaraksts[0]);
+		
+		return Arrays.asList(tSaraksts).indexOf(izveletais);
 	}
 }

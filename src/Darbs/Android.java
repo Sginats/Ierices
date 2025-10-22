@@ -13,13 +13,13 @@ package Darbs;
  *8. Izstrāde pabeigta noteiktajā termiņā, programma ir funkcionāli pilnīga (2p)
  */
 public class Android extends Telefons {
-
+	//Konstruktors
+	private boolean googleKonts, NFC, FingerID;
 	public Android(String marka, String modelis, double ekranaIzmers, int atmina, double cena) {
 		super(marka, modelis, ekranaIzmers, atmina, cena);
-		// TODO Auto-generated constructor stub
-	}
-
-
+		
+	//Metodes izdoma atšķirības no Iphone klases un parasta Telefons klases
+	static String OS = "Android
 	}
 
 }
