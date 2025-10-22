@@ -15,16 +15,26 @@ package Darbs;
 public class Iphone extends Telefons {
 
 	//Konstruktors
-	private boolean faceID, ringtons, bezvaduLade;
+	private boolean faceID, bezvaduLade;
 	
-	public Iphone(boolean faceID, boolean ringtons, boolean bezvaduLade,
-			String modelis, String krasa, double ekranaIzmers, int atmina, double cena) {
-		super(modelis, krasa, ekranaIzmers, atmina, cena);
+	public Iphone(boolean faceID, boolean bezvaduLade,
+			String modelis, double ekranaIzmers, int atmina, double cena, String krasa, boolean ringtons) {
+		super(modelis, ekranaIzmers, atmina, cena, krasa, ringtons);
 		this.faceID = faceID;
-		this.ringtons = ringtons;
 		this.bezvaduLade = bezvaduLade;
 	}
-	static String OS = "iOS";
-	static String izvele;
+	public void setFaceID(boolean faceID) {
+		this.faceID = faceID;
+	}
+	public boolean getFaceID() {
+		return faceID;
+	}
+	public void setBezvaduLade(boolean bezvaduLade) {
+		this.bezvaduLade = bezvaduLade;
+	}
+	public boolean getBezvaduLade() {
+		return bezvaduLade;
+	}
+	
 	
 }

@@ -48,11 +48,61 @@ public class Ierice {
                 double atmina = Metodes.skaitlaParbaude("Cik liela būs telefonam atmiņa?", 32, 1024, "128");
 	            double cena = Metodes.skaitlaParbaude("Cik maksās", 10, 10000, "630");
                 String krasa = Metodes.virknesParbaude("Kādā krāsā", "balts");
-                
+                izvele = (String)JOptionPane.showInputDialog(null, "Vai būs google konts", "Izveide",
+                        JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                boolean ring;
+                if(izvele == "Jā")
+                    ring = true;
+                else 
+                    ring = false;
                 switch(izvelesID){
                     case 0:
-                        telefoni.add(new Telefons(modelis, ekranaIzmers,(int)atmina ,cena, krasa));
-					    JOptionPane.showMessageDialog(null, "Veiksmīgi uztaisīts velosipēds",
+                        izvele = (String)JOptionPane.showInputDialog(null, "Vai būs google konts", "Izveide",
+                        JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                        boolean googleK;
+                        if(izvele == "Jā")
+                            googleK = true;
+                        else 
+                            googleK = false;
+
+                        izvele = (String)JOptionPane.showInputDialog(null, "Vai būs NFC", "Izveide",
+                        JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                        boolean NFC;
+                        if(izvele == "Jā")
+                            NFC = true;
+                        else 
+                            NFC = false;
+                            izvele = (String)JOptionPane.showInputDialog(null, "Vai būs fingerID", "Izveide",
+                        JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                        boolean FID;
+                        if(izvele == "Jā")
+                            FID = true;
+                        else 
+                            FID = false;
+
+                        telefoni.add(new Android(googleK, NFC, FID, 
+                                    modelis, ekranaIzmers,(int)atmina ,cena, krasa, ring));
+					    JOptionPane.showMessageDialog(null, "Veiksmīgi izveidots telefons",
+							"Paziņojums", JOptionPane.INFORMATION_MESSAGE);
+                        break;
+                    case 1:
+                        izvele = (String)JOptionPane.showInputDialog(null, "Vai būs faceID?", "Izveide",
+                            JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                        boolean faceID ;
+                        if(izvele == "Jā")
+                            faceID  = true;
+                        else 
+                            faceID  = false;
+                        izvele = (String)JOptionPane.showInputDialog(null, "Vai būs iespēja lādēt bez vada?", "Izveide",
+                            JOptionPane.INFORMATION_MESSAGE, null, atbilde, atbilde[0]);
+                        boolean BezV ;
+                        if(izvele == "Jā")
+                            BezV  = true;
+                        else 
+                            BezV  = false;
+                            telefoni.add(new Iphone(faceID, BezV,
+                                    modelis, ekranaIzmers,(int)atmina ,cena, krasa, ring));
+					    JOptionPane.showMessageDialog(null, "Veiksmīgi izveidots telefons",
 							"Paziņojums", JOptionPane.INFORMATION_MESSAGE);
                         break;
                 }

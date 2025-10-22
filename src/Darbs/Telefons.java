@@ -1,5 +1,16 @@
 package Darbs;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
+
 /*/
  *1.Izstrādāt objektorientētu programmu, kura tās galvenajā klasē ar JOptionPane
  *  dialoglogiem nodrošina izvēles izdarīšanas funkcionalitāti veicamajām darbībām.Tiek nodrošināta ievaddatu validācija (3p)
@@ -21,13 +32,15 @@ public class Telefons {
 	private double ekranaIzmers;
 	private int atmina;
 	private double cString, cena;
+	private boolean ringtons;
 	//Konstruktors
-	public Telefons(String modelis, double ekranaIzmers, int atmina, double cena, String krasa) {
+	public Telefons(String modelis, double ekranaIzmers, int atmina, double cena, String krasa, boolean ringtons) {
 		this.modelis = modelis;
 		this.ekranaIzmers = ekranaIzmers;
 		this.atmina = atmina;
 		this.cena = cena;
 		this.krasa = krasa;
+		this.ringtons = ringtons;
 	}
 	//Metodes
 	public String getModelis() {
@@ -67,11 +80,32 @@ public class Telefons {
 	public String setKrasa() {
 		return krasa;
 	}
-	public String izvadit() {
-		return "Telefona modelis: "+modelis+
-				"\nEkrāna izmērs: "+ekranaIzmers+" collas"+
-				"\nAtmiņa: "+atmina+" GB"+
-				"\nCena: "+cena+" EUR"+
-				"\nKrāsa: "+krasa;
+	public boolean getRingtons() {
+		return ringtons;
 	}
+	public void setRingtons(boolean ringtons) {
+		this.ringtons = ringtons;
+	}
+    public void ring() throws MalformedURLException, 
+	UnsupportedAudioFileException, IOException, 
+	LineUnavailableException{
+		if(ringtons) {
+			File f = new File(".//zvans//"+"zvans.wav");
+			AudioInputStream ais = AudioSystem.getAudioInputStream(f.toURI().toURL());
+			Clip c = AudioSystem.getClip();
+			c.open(ais);
+			c.start();
+		}else {
+			JOptionPane.showMessageDialog(null, "Nav uzstādīts ringtons!", 
+					"Paziņojums", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	public String izvadit() {
+		return "Modelis: "+getModelis()+
+				"\nEkrāna izmērs: "+getEkranaIzmers()+" collas"+
+				"\nAtmiņa: "+getAtmina()+" GB"+
+				"\nCena: "+getCena()+" EUR"+
+				"\nKrāsa: "+getKrasa()+
+				"\nRingtons: "+((ringtons)? "Ir": "Nav");
+		}
 }
