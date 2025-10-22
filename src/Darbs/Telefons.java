@@ -17,13 +17,13 @@ public class Telefons {
 	//Atribūti
 	private String modelis;
 	private double ekranaIzmers;
-	private int atmiņa;
+	private int atmina;
 	private double cena;
 	//Konstruktors
-	public Telefons(String marka, String modelis, double ekranaIzmers, int atmiņa, double cena) {
+	public Telefons(String marka, String modelis, double ekranaIzmers, int atmina, double cena) {
 		this.modelis = modelis;
 		this.ekranaIzmers = ekranaIzmers;
-		this.atmiņa = atmiņa;
+		this.atmina = atmina;
 		this.cena = cena;
 	}
 	//Metodes
@@ -43,12 +43,12 @@ public class Telefons {
 		this.ekranaIzmers = ekranaIzmers;
 	}
 
-	public int getAtmiņa() {
-		return atmiņa;
+	public int getAtmina() {
+		return atmina;
 	}
 
-	public void setAtmiņa(int atmiņa) {
-		this.atmiņa = atmiņa;
+	public void setAtmina(int atmina) {
+		this.atmina = atmina;
 	}
 
 	public double getCena() {
@@ -61,7 +61,7 @@ public class Telefons {
 	public String izvaditInfo() {
 		return "Modelis: " + modelis + 
 			   "\nEkrāna izmērs: " + ekranaIzmers + " collas" +
-			   "\nAtmiņa: " + atmiņa + " GB" +
+			   "\nAtmiņa: " + atmina + " GB" +
 			   "\nCena: " + cena + " EUR";
 	}
 }

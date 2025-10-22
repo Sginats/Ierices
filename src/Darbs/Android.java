@@ -14,4 +14,12 @@ package Darbs;
  */
 public class Android extends Telefons {
 
+	public Android(String marka, String modelis, double ekranaIzmers, int atmina, double cena) {
+		super(marka, modelis, ekranaIzmers, atmina, cena);
+		// TODO Auto-generated constructor stub
+	}
+
+
+	}
+
 }
