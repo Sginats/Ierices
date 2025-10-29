@@ -1,17 +1,10 @@
 package Darbs;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 public class Metodes {
@@ -63,5 +56,6 @@ public class Metodes {
 		
 		return Arrays.asList(tSaraksts).indexOf(izveletais);
 	}
+	
 
 }

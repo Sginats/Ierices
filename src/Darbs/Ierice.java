@@ -1,17 +1,13 @@
 package Darbs;
 
-import java.io.IOException;
+import java.util.*;
+import javax.swing.*;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import java.net.URL;
+import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-/*/
+/*/;
  *1.Izstrādāt objektorientētu programmu, kura tās galvenajā klasē ar JOptionPane
  *  dialoglogiem nodrošina izvēles izdarīšanas funkcionalitāti veicamajām darbībām.Tiek nodrošināta ievaddatu validācija (3p)
  *2.Programmas galvenajā klasē ir iespējams izveidot jaunus klašu objektus (uzglabāt kādā no datu struktūrām),
@@ -25,7 +21,8 @@ import javax.swing.ScrollPaneConstants;
  *8. Izstrāde pabeigta noteiktajā termiņā, programma ir funkcionāli pilnīga (2p)
  */
 public class Ierice {
-   public static void main(String[] args) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
+   @SuppressWarnings("deprecation")
+public static void main(String[] args) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
        String izvele;
        int izvelesID;
        String [] darbibas = {"Izveidot telefonu",
@@ -33,7 +30,7 @@ public class Ierice {
         String[] veidi = {"Android", "Iphone"};
 		String[] atbilde = {"Jā", "Nē"};
 
-        String[] metodes = {"Zvanit", "x"};
+        String[] metodes = {"Zvanit", "Kamera", "Atpakaļ"};
         ArrayList<Object> telefoni = new ArrayList<>();
         do{
         izvele = (String)JOptionPane.showInputDialog(null, 
@@ -41,7 +38,7 @@ public class Ierice {
                             null, darbibas, darbibas[0]);
         if(izvele == null) break;
         izvelesID = Arrays.asList(darbibas).indexOf(izvele);
-        System.out.println(telefoni.size());
+       
         switch(izvelesID){
             case 0: 
                 String modelis = (String) JOptionPane.showInputDialog(null, "Izvēlies modeli",
@@ -147,7 +144,7 @@ public class Ierice {
                         telefoni.remove(ritID);
                         JOptionPane.showMessageDialog(null, "Veiksmīgi izdzēsts telefons",
                                 "Paziņojums", JOptionPane.INFORMATION_MESSAGE);
-                    }else {
+                    }else {   
                         JOptionPane.showMessageDialog(null, "Nav ievadīts neviens telefons",
                                 "Kļūda", JOptionPane.ERROR_MESSAGE);
                         break;
@@ -165,10 +162,34 @@ public class Ierice {
                         switch(izvele){
                             case "Zvanit":
                                 ((Telefons)telefoni.get(telID)).ring();
+                                int a = JOptionPane.showOptionDialog(
+                                    null, "Vai pacelsi telefonu?", "Izvēle", 0, -1, null, atbilde, args);
+                                     System.out.println(a);
+                                if(a == 0) 
+                                ((Telefons)telefoni.get(telID)).pacelt();
                                 break;
-
+                                
+                            case "Kamera":
+                                URL url = new URL("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2xhMGFtc2xlMHUwaXpvdnpycDF5M2s0MjU4Y24zcHFmeWgzaTVrcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CGXnGb7zpsvXD2uwvd/giphy.gif");
+                                Icon icon = new ImageIcon(url);
+                                JLabel label = new JLabel(icon);
+                            
+                                JFrame f = new JFrame("Kamera");
+                                
+                                f.getContentPane().add(label);
+                                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                f.pack();
+                                f.setLocationRelativeTo(null);
+                                f.setVisible(true);
+                                f.setVisible(false);
+                                break;
+                            case "Lokacija":
+                                
+                                break;
+                            case "Atpakaļ":
+                                break;
                         }
-                    }while(izvele != "x");
+                    }while(izvele != "Atpakaļ");
 				}else {
 					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens telefons",
 							"Kļūda", JOptionPane.ERROR_MESSAGE);
@@ -182,4 +203,12 @@ public class Ierice {
         }
         }while(izvelesID != 4);
    }
-}
+   static void timer(){
+        try {
+            Thread.sleep(5000);
+        }catch (Exception e){
+            
+        }
+        }
+   }
+

@@ -100,6 +100,20 @@ public class Telefons {
 					"Paziņojums", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+    public void pacelt() throws MalformedURLException, 
+	UnsupportedAudioFileException, IOException, 
+	LineUnavailableException{
+		if(ringtons) {
+			File f = new File(".//zvans//"+"pacelt.wav");
+			AudioInputStream ais = AudioSystem.getAudioInputStream(f.toURI().toURL());
+			Clip c = AudioSystem.getClip();
+			c.open(ais);
+			c.start();
+		}else {
+			JOptionPane.showMessageDialog(null, "Kļuda audio failā!", 
+					"Paziņojums", JOptionPane.ERROR_MESSAGE);
+		}
+		}
 	public String izvadit() {
 		return "Modelis: "+getModelis()+
 				"\nEkrāna izmērs: "+getEkranaIzmers()+" collas"+
