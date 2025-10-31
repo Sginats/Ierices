@@ -9,5 +9,7 @@ Java programmēšanas valodā izstrādāta programma par ierīču izveidi un ier
     - [x] Iphone
 	- [x] Apskatīt telefonus
 	- [x] Dzēst telefonu
-	- [ ] Izsaukt metodes
+	- [x] Izsaukt metodes
 	  - [x] Zvanīt zvaniņu
+      - [x] Kamera
+      - [x] Spēle
