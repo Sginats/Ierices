@@ -1,6 +1,7 @@
 package Darbs;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,7 +18,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-public class Ierice {
+public class Ierice implements Serializable {
+   /**
+	 * Ģenerēts serialVersionUID
+	 */
+	private static final long serialVersionUID = 1219937631087838771L;
    @SuppressWarnings("deprecation")
 public static void main(String[] args) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
        String izvele;

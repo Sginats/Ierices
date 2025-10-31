@@ -14,6 +14,10 @@ package Darbs;
  */
 public class Iphone extends Telefons {
 
+	/**
+	 * Ģenerēts serialVersionUID
+	 */
+	private static final long serialVersionUID = 4611242580945134427L;
 	//Konstruktors
 	private boolean faceID, bezvaduLade;
 	

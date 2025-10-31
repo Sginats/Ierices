@@ -2,6 +2,7 @@ package Darbs;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 
 import javax.sound.sampled.AudioInputStream;
@@ -12,8 +13,14 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 
-public class Telefons {
+public class Telefons implements Serializable{
 	
+	
+	/**
+	 * Ģenerēts serialVersionUID
+	 */
+	private static final long serialVersionUID = -4545901747918344580L;
+
 	private String modelis;
 	
 	private String krasa;

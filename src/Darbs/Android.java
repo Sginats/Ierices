@@ -13,6 +13,10 @@ package Darbs;
  *8. Izstrāde pabeigta noteiktajā termiņā, programma ir funkcionāli pilnīga (2p)
  */
 public class Android extends Telefons {
+	/**
+	 * Ģenerēts serialVersionUID
+	 */
+	private static final long serialVersionUID = -8261506718982270682L;
 	//Konstruktors
 	private boolean googleKonts, NFC, FingerID;
 	public Android(boolean googleKonts, boolean NFC, boolean FingerID,
