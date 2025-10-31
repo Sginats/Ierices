@@ -1,36 +1,34 @@
 package Darbs;
 
-import java.util.*;
-import javax.swing.*;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-/*/;
- *1.Izstrādāt objektorientētu programmu, kura tās galvenajā klasē ar JOptionPane
- *  dialoglogiem nodrošina izvēles izdarīšanas funkcionalitāti veicamajām darbībām.Tiek nodrošināta ievaddatu validācija (3p)
- *2.Programmas galvenajā klasē ir iespējams izveidot jaunus klašu objektus (uzglabāt kādā no datu struktūrām),
- *   apskatīt jau izveidotos objektus, dzēst objektus, izsaukt raksturojošās metodes (5p)
- *3. Atbilstoši programmas klasēm, definēti vairāki to raksturojoši atribūti un metodes (3p)
- *4. Programma demonstrē iekapsulēšanas un Java Bean klases pamatprincipus (3p)
- *5. Programmā jēgpilni nodrošināta Virsklases un Apakšklaes struktūra (4p)
- *6. Visa projekta izstrādes procesa gaita ir jēgpilni versionēta ar Git, projekts izvietots GitHub,
- *kur tas papildināts ar aprakstošu README failu (3p)
- *7. Veikta izstrādātā projekta demonstrēšana, orientējas projektā un spēj atbildēt uz uzdotajiem jautājumiem (4p)
- *8. Izstrāde pabeigta noteiktajā termiņā, programma ir funkcionāli pilnīga (2p)
- */
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+
 public class Ierice {
    @SuppressWarnings("deprecation")
 public static void main(String[] args) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException{
        String izvele;
+       int n;
        int izvelesID;
        String [] darbibas = {"Izveidot telefonu",
        "Apskatīt telefonus","Dzēst telefonu","Izsaukt metodes", "Apturēt"};
         String[] veidi = {"Android", "Iphone"};
 		String[] atbilde = {"Jā", "Nē"};
 
-        String[] metodes = {"Zvanit", "Kamera", "Atpakaļ"};
+        String[] metodes = {"Atbildēt", "Kamera", "Spēles", "Atpakaļ"};
         ArrayList<Object> telefoni = new ArrayList<>();
         do{
         izvele = (String)JOptionPane.showInputDialog(null, 
@@ -160,32 +158,46 @@ public static void main(String[] args) throws MalformedURLException, Unsupported
                             null, metodes, metodes[0]);
                         if(izvele == null) break;
                         switch(izvele){
-                            case "Zvanit":
+                            case "Atbildēt":
                                 ((Telefons)telefoni.get(telID)).ring();
                                 int a = JOptionPane.showOptionDialog(
                                     null, "Vai pacelsi telefonu?", "Izvēle", 0, -1, null, atbilde, args);
-                                     System.out.println(a);
+                                    
                                 if(a == 0) 
                                 ((Telefons)telefoni.get(telID)).pacelt();
                                 break;
                                 
                             case "Kamera":
-                                URL url = new URL("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa2xhMGFtc2xlMHUwaXpvdnpycDF5M2s0MjU4Y24zcHFmeWgzaTVrcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CGXnGb7zpsvXD2uwvd/giphy.gif");
-                                Icon icon = new ImageIcon(url);
+                            	n=5000;
+                            	URL url1 = new URL("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExMG4za3Q2ODNteXg5MnJuY3plb3Jxdmw3dzQzNDdldjljbm1hbTI2dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XRXAVE3ZhLLAYHMbR2/giphy.gif");
+                                Icon icon = new ImageIcon(url1);
                                 JLabel label = new JLabel(icon);
-                            
-                                JFrame f = new JFrame("Kamera");
                                 
+                                JFrame f = new JFrame("Kamera");
                                 f.getContentPane().add(label);
                                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                 f.pack();
                                 f.setLocationRelativeTo(null);
                                 f.setVisible(true);
+                                timer(n);
                                 f.setVisible(false);
                                 break;
-                            case "Lokacija":
+                            case "Spēles":
+                            	n=7600;
+                            	URL url2 = new URL("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2lkejRxMzY1cjFwZW9zeGhkd2pxcGJpcTg3dHFxN3VsM2VuM3RlZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/n90VEOfcCvrDo2fMOR/giphy.gif");
+                                Icon icon1 = new ImageIcon(url2);
+                                JLabel label1 = new JLabel(icon1);
                                 
-                                break;
+                                JFrame f1 = new JFrame("Spēlīte");
+                                ((Telefons)telefoni.get(telID)).clash();
+                                f1.getContentPane().add(label1);
+                                f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                f1.pack();
+                                f1.setLocationRelativeTo(null);
+                                f1.setVisible(true);
+                                timer(n);
+                                f1.setVisible(false);
+                            	break;
                             case "Atpakaļ":
                                 break;
                         }
@@ -203,12 +215,11 @@ public static void main(String[] args) throws MalformedURLException, Unsupported
         }
         }while(izvelesID != 4);
    }
-   static void timer(){
+   static void timer(int n){
         try {
-            Thread.sleep(5000);
+            Thread.sleep(n);
         }catch (Exception e){
-            
-        }
+            JOptionPane.showMessageDialog(null, "Error", "Error", JOptionPane.ERROR_MESSAGE);
         }
    }
-
+}
